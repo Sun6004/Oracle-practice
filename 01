@@ -1,0 +1,79 @@
+2023-0106-01)테이블 생성
+    - CREATE TABLE 명령사용으로 테이블 생성
+    (사용형식)
+      CREATE TABLE 테이블명 (
+       컬럼명 데이터타입[(크기)] [NOT NULL][DEFAULT 값][,]
+                            :
+       컬럼명 데이터타입[(크기)] [NOT NULL][DEFAULT 값][,] (NOT NULL 과 DEFAULT 같이쓸 수 없음)
+        
+        [CONSTRAINT 기본키설정명 PRIMARY KEY (컬럼명[,컬럼명,...])][,] --PK_테이블명
+        
+        [CONSTRAINT 외래키설정명 FOREIGN KEY (컬럼명) REFERENCES 테이블명(컬럼명)][,] --FK_테이블명
+                            :
+        [CONSTRAINT 외래키설정명 FOREIGN KEY (컬럼명) REFERENCES 테이블명(컬럼명)]; 
+        
+        .'데이터타입[(크기)]': 사용할 데이터 타입과 크기설정. 데이터타입은 VARCHAR2, CHAR, CLOB, NUMBER, DATE, BFILE, BLOB 등이 있으며,
+         대이터 타입에 따라 크기를 생략하는 경우도 있음(DATE,CLOB,BFILE,BLOB)
+        . 'DEFAULT 값': 데이터 입력시 (INSERT INTO문) 데이터를 정의하지 않으면 자동 저장될 값
+        . '기본키설정명': 기본키를 설정하는데 부여되는 이름으로 중복되지 말아야 함
+        . 'PRIMARY KEY (컬럼명[,컬럼명,...])': 기본키로 사용할 컬럼명 기술 하나이상의 컬럼을 기본키로 사용할 경우 ','로 구분하여 기술
+        . '외래키설정명': 외래키를 설정하는데 부여되는 이름으로 중복되지 말아야 함
+        . 'REFERENCES 테이블명(컬럼명)': 부모테일블명과 부모테이블에서 사용하는 칼럼명 기술
+        . 외래키가 2개 이상인 경우 'CONSTRAINT 외래키설정명' 구문이 외래키의 갯수와 동일하게 2개 이상 있어야 함
+        
+        사용예) 한국걸설의 사원테이블
+        
+        create table emp(
+          emp_id char(4),
+          emp_name varchar2(20),
+          emp_addr varchar2(100),
+          dept_name varchar2(50),
+          constraint pk_emp primary key(emp_id));
+          
+        create table site(
+          site_id number(5),
+          site_name varchar2(50) not null,
+          site_addr varchar2(100),
+          sit_tel_num varchar2(20),
+          constraint site_id primary key(site_id));
+          
+        create table site_mat(
+          smat_id varchar2(5),
+          buy_date date,
+          price number(7) default 0, --default0 : 기본값0
+          site_id number(5),
+          constraint pk_smat primary key(smat_id),
+          constraint fk_smat_site FOREIGN KEY(site_id) references site(site_id));
+          
+        create table tbl_work(
+            site_id number(5),
+            emp_id char(4),
+            in_date date,
+            constraint pk_tbl_work primary key(site_id, emp_id),
+            constraint fk_twork_site foreign key(site_id) references site(site_id),
+            constraint fk_twork_emp foreign key(emp_id) references emp(emp_id));
+            
+            
+2023/01/09) 
+테이블의 생성, 삭제
+ -테이블 삭제
+    -drop table 명령으로 수행
+    -자식테이블을 보유한 부모테이블은 삭제불가
+      .자식테이블이 먼저 삭제된 후 부모테이블 삭제가능
+      .관계를 삭제한 후 부모 또는 자식테이블 삭제가능
+(사용형식)
+    drop table 테이블명;
+
+(사용예) site 테이블을 삭제
+    drop table emp;--x
+    --자식테이블이 먼저 삭제된 후 부모테이블 삭제가능
+    drop table tbl_work;
+    drop table emp;
+    
+    --관계 삭제 예시
+    alter table 테이블명 drop constraint 외래키설정명
+    
+    alter table site_mat drop constraint fk_smat_site;
+    
+    drop table site_mat;
+    drop table site;
