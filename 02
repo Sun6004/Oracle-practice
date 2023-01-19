@@ -1,0 +1,54 @@
+2023-0109-01) 데이터 삽입
+    -DML(DATA Manipulation LANGUAGE)명령에 속한 명령으로 신규 자료 삽입
+    -삽입 대상 데이터가 테이블에 존재하지 말아야 함
+(사용형식)
+    insert into 테이블명[{컬럼명1,컬럼명2[,...])] values(값1,값2,...);
+    . 테이블명[(컬럼명1, 컬럼명2[,...])] : 컬럼명을 생략할 수 있음 => 테이블에 존재하는 모든 칼럼에 
+      데이터를 컬럼 기술 순서에 맞게 기술해야함.
+    
+    . 테이블명[(컬럼명1,컬럼명2[,...])] : 컬럼명을 기술하는 주된 이유는 필요한 자료만 삽입하는
+      경우이며, 컬럼의 기술순서는 테이블에 존재하는 컬럼의 순서와 상관없음.
+      기술된'(컬럼명1,컬럼명2[,...])'의 컬럼의 수와 기술순서에 맞게 values 절의 데이터가 기술되어야 함.
+    
+    . 컬럼정의시 not null 로 설계된 컬럼은 '(컬럼명1,컬럼명2[,...])'에서 절대 생략불가
+    
+    사용예) 다음 자료를 생성한 emp 테이블에 저장하시오
+    ----------------------------------------------------------------
+    사원번호    이름                 주소                    부서명
+    ----------------------------------------------------------------
+    s001     홍길동      대전 중구 대흥동                   공공개발팀
+    s002     이순신      서울 성북구 장위동                  
+    p001     강감찬                                      개발지원팀
+    k001                충북 청주시 서원구 북대동
+             홍길순      충북 청주시 서원구 북대동
+    
+        
+        insert into emp values('s001','홍길동','대전시 중구 대흥동','공공개발팀');
+        insert into emp values('p001', '이순신', null, '개발지원팀'); 
+        insert into emp values('k001','','충북 청주시 서원구 북대동',null); -- '': White space=null 
+       
+        insert into emp (EMP_ID,dept_name,emp_name,emp_addr)
+            values('p002','개발지원팀','김정은','');
+        insert into emp (emp_id,emp_addr, emp_name)
+            values('p003','충북 청주시 서원구 북대동','홍길순');
+        
+       
+        INSERT INTO site (site_id,site_name,site_addr)
+            values('10001','연풍성지조성','충북 괴산 연풍');
+        INSERT INTO site (site_id,site_name,site_addr)
+            values('10003','교동초도신축','');
+        
+        insert into site values(10002,'연풍성지조성','충북 괴산 연풍','');
+        insert into site values(10004,'교동초도신축','','042-222-2222');
+        
+        사용예) 근무자료 입력
+        insert into TBL_WORK values(10001,'p002',sysdate);
+        insert into TBL_WORK values(10003,'s001',sysdate); --sysdate(system date) : 오늘날짜
+        insert into TBL_WORK values(10003,'p001',to_date('2021/01/19')); --날짜형식 직접 지정
+        insert into TBL_WORK values(10003,'s002','20201210'); --date 구별자없이 8자리 쓰는방식
+        
+        
+        
+        
+        select * from tbl_work; --잘 insert되었는지 검색 , selext *: 모든열 사용
+        select * from emp;
