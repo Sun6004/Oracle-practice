@@ -1,6 +1,6 @@
 2023-0119-01)NULL처리 함수
   - 오라클의 기본 초기화 값은 기억공간의 데이터 타입에 관계없이 NULL임
-  - NULL타입의 자료와 어떤 타이의 자료가 연산(사칙,비교)되면 결과가 NULL임
+  - NULL타입의 자료와 어떤 타입의 자료가 연산(사칙,비교)되면 결과가 NULL임
   - NULL 처리를 위한 함수와 연산자 : IS [NOT] NULL, NVL, NVL2, NULLIF등이 제공
   
 1. IS [NOT] NULL
@@ -14,7 +14,7 @@
            PROD_SIZE AS 크기,
            PROD_COLOR AS 색상
         FROM PROD
-        WHERE PROD_COLOR IS NULL;
+        WHERE PROD_COLOR IS NOT NULL;
         
 2. NVL(expr,val)
   - 'expr'값이 NULL이면 'val'을 출력하고, NULL이 아니면 expr값을 출력
@@ -30,13 +30,13 @@
         FROM HR.EMPLOYEES;
         
 **매입테이블에서 매입된 상품의 분류코드의 종류 및 매입수량 합계
-  SELECT LPROD_GU AS 분류코드,
-         SUM(A.BUY_QTY) AS 매입수량 합계
+  SELECT B.LPROD_GU AS 분류코드,
+         SUM(A.BUY_QTY) AS 매입수량합계
     FROM BUYPROD A, LPROD B, PROD C
-    WHERE A.BUYPROD = C.PROD_ID
-      AND C.PROD_LGU = B.LPROD_GU
+    WHERE A.BUY_PROD=C.PROD_ID
+      AND C.PROD_LGU=B.LPROD_GU
       GROUP BY B.LPROD_GU
-      ORDER BY;
+      ORDER BY 1;
     
 사용예) 모든 분류코드별 평균매입가를 구하시오.
     SELECT LPROD_GU AS 분류코드,
