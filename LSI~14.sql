@@ -1,72 +1,72 @@
-2023-0130-01) ¼­ºêÄõ¸®(SUBQUERY)  --¾Ë·ÁÁöÁö ¾ÊÀº Á¶°ÇÀ» »êÃâÇÏ±â À§ÇÔ
- - ¼­ºêÄõ¸®´Â Äõ¸®¾È¿¡ Á¸ÀçÇÏ´Â ¶Ç ´Ù¸¥ Äõ¸®¸¦ ÀÇ¹Ì ÇÔ.
- - ÁÖ·Î ¾Ë·ÁÁöÁö ¾ÊÀº Á¶°Ç¿¡ ÀÇÁ¸ÇÏ¿© ÁúÀÇ¸¦ Ã³¸®ÇØ¾ß ÇÏ´Â °æ¿ì »ç¿ëÇÔ
- - ¼­ºêÄõ¸®´Â '( )' ¾È¿¡ ±â¼úÇØ¾ßÇÔ
- - INSERT ¿¡ »ç¿ëµÇ´Â ¼­ºêÄõ¸®´Â '( )' »ç¿ëÇÏÁö ¾ÊÀ½
- - ¿¬»êÀÚ¿Í ÇÔ²² »ç¿ëÇÒ ¶§´Â ¹Ýµå½Ã ¿¬»êÀÚ ¿À¸¥ÂÊ¿¡ À§Ä¡
- - ¼­ºêÄõ¸®ÀÇ ½ÇÇà ¼ø¼­´Â ¼­ºêÄõ¸®°¡ ±â¼úµÈ ÀýÀÇ ¼ø¼­¿¡¼­ °¡Àå¸ÕÀú ¼öÇàµÊ
- - ¼­ºêÄõ¸®¾È¿¡ ¼­ºêÄõ¸®¸¦ »ç¿ë°¡´É
- - ¼­ºêÄõ¸®ÀÇ Á¾·ù
-  . ¸ÞÀÎÄõ¸®¿ÍÀÇ ¿¬°ü¼º ¿©ºÎ¿¡ µû¶ó
-   - °ü·Ã¼ºÀÖ´Â ¼­ºêÄõ¸®, °ü·Ã¼º ¾ø´Â ¼­ºêÄõ¸®
-  . ±â¼úµÈ À§Ä¡¿¡ µû¶ó
-   - ÀÏ¹Ý¼­ºêÄõ¸®(SELECT Àý), ÀÎ¶óÀÎ ºä ¼­ºêÄõ¸®(FROM Àý), ÁßÃ¸¼­ºêÄõ¸®(WHERE Àý)
+2023-0130-01) ì„œë¸Œì¿¼ë¦¬(SUBQUERY)  --ì•Œë ¤ì§€ì§€ ì•Šì€ ì¡°ê±´ì„ ì‚°ì¶œí•˜ê¸° ìœ„í•¨
+ - ì„œë¸Œì¿¼ë¦¬ëŠ” ì¿¼ë¦¬ì•ˆì— ì¡´ìž¬í•˜ëŠ” ë˜ ë‹¤ë¥¸ ì¿¼ë¦¬ë¥¼ ì˜ë¯¸ í•¨.
+ - ì£¼ë¡œ ì•Œë ¤ì§€ì§€ ì•Šì€ ì¡°ê±´ì— ì˜ì¡´í•˜ì—¬ ì§ˆì˜ë¥¼ ì²˜ë¦¬í•´ì•¼ í•˜ëŠ” ê²½ìš° ì‚¬ìš©í•¨
+ - ì„œë¸Œì¿¼ë¦¬ëŠ” '( )' ì•ˆì— ê¸°ìˆ í•´ì•¼í•¨
+ - INSERT ì— ì‚¬ìš©ë˜ëŠ” ì„œë¸Œì¿¼ë¦¬ëŠ” '( )' ì‚¬ìš©í•˜ì§€ ì•ŠìŒ
+ - ì—°ì‚°ìžì™€ í•¨ê»˜ ì‚¬ìš©í•  ë•ŒëŠ” ë°˜ë“œì‹œ ì—°ì‚°ìž ì˜¤ë¥¸ìª½ì— ìœ„ì¹˜
+ - ì„œë¸Œì¿¼ë¦¬ì˜ ì‹¤í–‰ ìˆœì„œëŠ” ì„œë¸Œì¿¼ë¦¬ê°€ ê¸°ìˆ ëœ ì ˆì˜ ìˆœì„œì—ì„œ ê°€ìž¥ë¨¼ì € ìˆ˜í–‰ë¨
+ - ì„œë¸Œì¿¼ë¦¬ì•ˆì— ì„œë¸Œì¿¼ë¦¬ë¥¼ ì‚¬ìš©ê°€ëŠ¥
+ - ì„œë¸Œì¿¼ë¦¬ì˜ ì¢…ë¥˜
+  . ë©”ì¸ì¿¼ë¦¬ì™€ì˜ ì—°ê´€ì„± ì—¬ë¶€ì— ë”°ë¼
+   - ê´€ë ¨ì„±ìžˆëŠ” ì„œë¸Œì¿¼ë¦¬, ê´€ë ¨ì„± ì—†ëŠ” ì„œë¸Œì¿¼ë¦¬
+  . ê¸°ìˆ ëœ ìœ„ì¹˜ì— ë”°ë¼
+   - ì¼ë°˜ì„œë¸Œì¿¼ë¦¬(SELECT ì ˆ), ì¸ë¼ì¸ ë·° ì„œë¸Œì¿¼ë¦¬(FROM ì ˆ), ì¤‘ì²©ì„œë¸Œì¿¼ë¦¬(WHERE ì ˆ)
 
-1. °ü·Ã¼º(¿¬°ü) ¾ø´Â ¼­ºêÄõ¸®
- - ¼­ºêÄõ¸®¿¡ »ç¿ëµÈ Å×ÀÌºí°ú ¸ÞÀÎÄõ¸®¿¡ »ç¿ëµÈ Å×ÀÌºíÀÌ Á¶ÀÎÀ¸·Î ¿¬°áµÇÁö ¾ÊÀº ¼­ºêÄõ¸®
+1. ê´€ë ¨ì„±(ì—°ê´€) ì—†ëŠ” ì„œë¸Œì¿¼ë¦¬
+ - ì„œë¸Œì¿¼ë¦¬ì— ì‚¬ìš©ëœ í…Œì´ë¸”ê³¼ ë©”ì¸ì¿¼ë¦¬ì— ì‚¬ìš©ëœ í…Œì´ë¸”ì´ ì¡°ì¸ìœ¼ë¡œ ì—°ê²°ë˜ì§€ ì•Šì€ ì„œë¸Œì¿¼ë¦¬
  
-»ç¿ë¿¹) »ç¿øÅ×ÀÌºí¿¡¼­ »ç¿øµéÀÇ Æò±Õ±Þ¿©º¸´Ù ´õ ¸¹Àº ±Þ¿©¸¦ ¹Þ´Â »ç¿ø¼ö¸¦ Á¶È¸ÇÏ½Ã¿À.
-  (¸ÞÀÎÄõ¸® : »ç¿ø¼ö)
+ì‚¬ìš©ì˜ˆ) ì‚¬ì›í…Œì´ë¸”ì—ì„œ ì‚¬ì›ë“¤ì˜ í‰ê· ê¸‰ì—¬ë³´ë‹¤ ë” ë§Žì€ ê¸‰ì—¬ë¥¼ ë°›ëŠ” ì‚¬ì›ìˆ˜ë¥¼ ì¡°íšŒí•˜ì‹œì˜¤.
+  (ë©”ì¸ì¿¼ë¦¬ : ì‚¬ì›ìˆ˜)
    SELECT COUNT(*)
      FROM HR.EMPLOYEES
-    WHERE SALARY >= (¼­ºêÄõ¸®: Æò±Õ±Þ¿©)
+    WHERE SALARY >= (ì„œë¸Œì¿¼ë¦¬: í‰ê· ê¸‰ì—¬)
     
-  (¼­ºêÄõ¸®: Æò±Õ±Þ¿©)
+  (ì„œë¸Œì¿¼ë¦¬: í‰ê· ê¸‰ì—¬)
   SELECT AVG(SALARY)
     FROM HR.EMPLOYEES;
  
-  (°áÇÕ)
+  (ê²°í•©)
    SELECT COUNT(*)
      FROM HR.EMPLOYEES
     WHERE SALARY >= (SELECT AVG(SALARY)
                        FROM HR.EMPLOYEES);
                        
-  (¿¬°ü¼º ÀÖ´Â ¼­ºêÄõ¸®)
+  (ì—°ê´€ì„± ìžˆëŠ” ì„œë¸Œì¿¼ë¦¬)
     SELECT COUNT(*)
      FROM HR.EMPLOYEES A, (SELECT AVG(SALARY) AS  ASAL
                              FROM HR.EMPLOYEES)B
     WHERE SALARY >= B.ASAL;
                        
-»ç¿ë¿¹) »óÇ°Å×ÀÌºí¿¡¼­ »óÇ°ÀÌ 'P200'´ëÀÇ ºÐ·ù¿¡ ¼ÓÇÏ¸ç Å©±âÁ¤º¸°¡ ¾ø´Â »óÇ°Á¤º¸¸¦ Á¶È¸ÇÏ½Ã¿À
-       Alias´Â »óÇ°ÄÚµå, »óÇ°¸í, ºÐ·ùÄÚµå, ºÐ·ù¸í
+ì‚¬ìš©ì˜ˆ) ìƒí’ˆí…Œì´ë¸”ì—ì„œ ìƒí’ˆì´ 'P200'ëŒ€ì˜ ë¶„ë¥˜ì— ì†í•˜ë©° í¬ê¸°ì •ë³´ê°€ ì—†ëŠ” ìƒí’ˆì •ë³´ë¥¼ ì¡°íšŒí•˜ì‹œì˜¤
+       AliasëŠ” ìƒí’ˆì½”ë“œ, ìƒí’ˆëª…, ë¶„ë¥˜ì½”ë“œ, ë¶„ë¥˜ëª…
   
-(¸ÞÀÎÄõ¸®: »óÇ°ÀÇ »óÇ°ÄÚµå, »óÇ°¸í, ºÐ·ùÄÚµå, ºÐ·ù¸íÀ» Ãâ·Â)
-  SELECT »óÇ°ÄÚµå, »óÇ°¸í, ºÐ·ùÄÚµå, ºÐ·ù¸í
+(ë©”ì¸ì¿¼ë¦¬: ìƒí’ˆì˜ ìƒí’ˆì½”ë“œ, ìƒí’ˆëª…, ë¶„ë¥˜ì½”ë“œ, ë¶„ë¥˜ëª…ì„ ì¶œë ¥)
+  SELECT ìƒí’ˆì½”ë“œ, ìƒí’ˆëª…, ë¶„ë¥˜ì½”ë“œ, ë¶„ë¥˜ëª…
   FROM PROD A, LPROD B
   WHERE PROD_LGU LIKE 'P2%'
   AND A. P.PRPOD_LGU = PROD_GU
-  AND A.PROD_ID = (¼­ºêÄõ¸® : Å©±âÁ¤º¸¸¦ º¸À¯ÇÏÁö ¾ÊÀº »óÇ°)
+  AND A.PROD_ID = (ì„œë¸Œì¿¼ë¦¬ : í¬ê¸°ì •ë³´ë¥¼ ë³´ìœ í•˜ì§€ ì•Šì€ ìƒí’ˆ)
   
-(¼­ºêÄõ¸® : Å©±âÁ¤º¸¸¦ º¸À¯ÇÏÁö ¾ÊÀº »óÇ°
+(ì„œë¸Œì¿¼ë¦¬ : í¬ê¸°ì •ë³´ë¥¼ ë³´ìœ í•˜ì§€ ì•Šì€ ìƒí’ˆ
  SELECT PROD_ID
    FROM PROD
   WHERE PROD_SIZE IS NULL;
   
-  (°áÇÕ)
-  (IN¿¬»êÀÚ»ç¿ë)
-  SELECT PROD_ID AS »óÇ°ÄÚµå,
-         PROD_NAME AS »óÇ°¸í,
-         PROD_LGU AS ºÐ·ùÄÚµå
+  (ê²°í•©)
+  (INì—°ì‚°ìžì‚¬ìš©)
+  SELECT PROD_ID AS ìƒí’ˆì½”ë“œ,
+         PROD_NAME AS ìƒí’ˆëª…,
+         PROD_LGU AS ë¶„ë¥˜ì½”ë“œ
    FROM PROD
   WHERE PROD_LGU LIKE 'P1%'
     AND PROD_ID IN (SELECT PROD_ID
                       FROM PROD
                      WHERE PROD_SIZE IS NULL);
                      
-(EXISTS ¿¬»êÀÚ »ç¿ë -> ¿¬°ü¼º ÀÖ´Â ¼­ºêÄõ¸®)
-  SELECT A.PROD_ID AS »óÇ°ÄÚµå,
-         A.PROD_NAME AS »óÇ°¸í,
-         A.PROD_LGU AS ºÐ·ùÄÚµå
+(EXISTS ì—°ì‚°ìž ì‚¬ìš© -> ì—°ê´€ì„± ìžˆëŠ” ì„œë¸Œì¿¼ë¦¬)
+  SELECT A.PROD_ID AS ìƒí’ˆì½”ë“œ,
+         A.PROD_NAME AS ìƒí’ˆëª…,
+         A.PROD_LGU AS ë¶„ë¥˜ì½”ë“œ
   FROM PROD A
   WHERE A.PROD_LGU LIKE 'P1%'
   AND EXISTS (SELECT 1
@@ -75,44 +75,44 @@
                AND A.PROD_ID=B.PROD_ID);
                
 
-2. ¿¬°ü¼º ÀÖ´Â ¼­ºêÄõ¸®
- - ¸ÞÀÎÄõ¸®¿Í ¼­ºêÄõ¸® »çÀÌ¿¡ Á¶ÀÎ¿¬»êÀÌ Á¸ÀçÇÏ´Â °æ¿ì
+2. ì—°ê´€ì„± ìžˆëŠ” ì„œë¸Œì¿¼ë¦¬
+ - ë©”ì¸ì¿¼ë¦¬ì™€ ì„œë¸Œì¿¼ë¦¬ ì‚¬ì´ì— ì¡°ì¸ì—°ì‚°ì´ ì¡´ìž¬í•˜ëŠ” ê²½ìš°
  
-»ç¿ë¿¹) Á÷¹«º¯µ¿Å×ÀÌºí(JOB_HISTORY)ÀÇ ÀÚ·á¸¦ ÀÌ¿ëÇÏ¿© Á÷¹«º¯µ¿»ç¿ø Á¤º¸¸¦ Á¶È¸ÇÏ½Ã¿À.
-       Alias´Â »ç¿ø¹øÈ£, »ç¿ø¸í, ºÎ¼­¹øÈ£, ºÎ¼­¸í
+ì‚¬ìš©ì˜ˆ) ì§ë¬´ë³€ë™í…Œì´ë¸”(JOB_HISTORY)ì˜ ìžë£Œë¥¼ ì´ìš©í•˜ì—¬ ì§ë¬´ë³€ë™ì‚¬ì› ì •ë³´ë¥¼ ì¡°íšŒí•˜ì‹œì˜¤.
+       AliasëŠ” ì‚¬ì›ë²ˆí˜¸, ì‚¬ì›ëª…, ë¶€ì„œë²ˆí˜¸, ë¶€ì„œëª…
        
-  SELECT A.EMPLOYEE_ID AS »ç¿ø¹øÈ£,
+  SELECT A.EMPLOYEE_ID AS ì‚¬ì›ë²ˆí˜¸,
         (SELECT B.EMP_NAME
             FROM HR.EMPLOYEES B
-           WHERE B.EMPLOYEE_ID=A.EMPLOYEE_ID) AS »ç¿ø¸í,
-         A.DEPARTMENT_ID AS ºÎ¼­¹øÈ£,
+           WHERE B.EMPLOYEE_ID=A.EMPLOYEE_ID) AS ì‚¬ì›ëª…,
+         A.DEPARTMENT_ID AS ë¶€ì„œë²ˆí˜¸,
          (SELECT C.DEPARTMENT_NAME
            FROM HR.DEPARTMENTS C
-           WHERE C.DEPARTMENT_ID=A.DEPARTMENT_ID) AS ºÎ¼­¸í
+           WHERE C.DEPARTMENT_ID=A.DEPARTMENT_ID) AS ë¶€ì„œëª…
     FROM HR.JOB_HISTORY A
     ORDER BY 1;
     
-»ç¿ë¿¹) 2020³â »ó¹Ý±â »óÇ°º° ¸ÅÀÔ¼ö·®À» Á¶È¸ÇÏ¿© »óÀ§ 5°³»óÇ°ÀÇ »óÇ°ÄÚµå,»óÇ°¸í,¸ÅÀÔ¼ö·®ÇÕ°è¸¦ Á¶È¸ÇÏ½Ã¿À.
-  (¸ÞÀÎÄõ¸® : »óÀ§ 5°³»óÇ°ÀÇ »óÇ°ÄÚµå, »óÇ°¸í, ¸ÅÀÔ¼ö·®ÇÕ°è)
-    SELECT P.PROD_ID AS »óÇ°ÄÚµå,
-           P.PROD_NAME AS »óÇ°¸í, 
-           A.¸ÅÀÔ¼ö·®ÇÕ°è
-      FROM PROD P, (¼­ºêÄõ¸®)A
-     WHERE P.PROD_ID=A.»óÇ°ÄÚµå
+ì‚¬ìš©ì˜ˆ) 2020ë…„ ìƒë°˜ê¸° ìƒí’ˆë³„ ë§¤ìž…ìˆ˜ëŸ‰ì„ ì¡°íšŒí•˜ì—¬ ìƒìœ„ 5ê°œìƒí’ˆì˜ ìƒí’ˆì½”ë“œ,ìƒí’ˆëª…,ë§¤ìž…ìˆ˜ëŸ‰í•©ê³„ë¥¼ ì¡°íšŒí•˜ì‹œì˜¤.
+  (ë©”ì¸ì¿¼ë¦¬ : ìƒìœ„ 5ê°œìƒí’ˆì˜ ìƒí’ˆì½”ë“œ, ìƒí’ˆëª…, ë§¤ìž…ìˆ˜ëŸ‰í•©ê³„)
+    SELECT P.PROD_ID AS ìƒí’ˆì½”ë“œ,
+           P.PROD_NAME AS ìƒí’ˆëª…, 
+           A.ë§¤ìž…ìˆ˜ëŸ‰í•©ê³„
+      FROM PROD P, (ì„œë¸Œì¿¼ë¦¬)A
+     WHERE P.PROD_ID=A.ìƒí’ˆì½”ë“œ
        AND ROWNUM<=5;
   
-  (¼­ºêÄõ¸® : 2020³â »ó¹Ý±â »óÇ°º° ¸ÅÀÔ¼ö·®À» Á¶È¸ÇÏ¿© ¸ÅÀÔ¼ö·®À» ±âÁØÀ¸·Î ³»¸²Â÷¼øÀ¸·Î Ãâ·Â)
-    SELECT BUY_PROD AS »óÇ°ÄÚµå,
+  (ì„œë¸Œì¿¼ë¦¬ : 2020ë…„ ìƒë°˜ê¸° ìƒí’ˆë³„ ë§¤ìž…ìˆ˜ëŸ‰ì„ ì¡°íšŒí•˜ì—¬ ë§¤ìž…ìˆ˜ëŸ‰ì„ ê¸°ì¤€ìœ¼ë¡œ ë‚´ë¦¼ì°¨ìˆœìœ¼ë¡œ ì¶œë ¥)
+    SELECT BUY_PROD AS ìƒí’ˆì½”ë“œ,
            SUM(BUY_QTY) AS BSUM
         FROM BUYPROD
         WHERE BUY_DATE BETWEEN TO_DATE('20200101') AND TO_DATE('20200630')
         GROUP BY BUY_PROD
         ORDER BY 2 DESC;
         
-  (°áÇÕ)
-  SELECT   A.BUY_PROD AS »óÇ°ÄÚµå,
-           P.PROD_NAME AS »óÇ°¸í, 
-           A.BSUM AS ¸ÅÀÔ¼ö·®ÇÕ°è
+  (ê²°í•©)
+  SELECT   A.BUY_PROD AS ìƒí’ˆì½”ë“œ,
+           P.PROD_NAME AS ìƒí’ˆëª…, 
+           A.BSUM AS ë§¤ìž…ìˆ˜ëŸ‰í•©ê³„
       FROM PROD P, (SELECT BUY_PROD,
                        SUM(BUY_QTY) AS BSUM
                     FROM BUYPROD
@@ -122,39 +122,39 @@
      WHERE P.PROD_ID=A.BUY_PROD
        AND ROWNUM<=5;
        
- ***´ÙÀ½ Á¶°ÇÀ» ¸¸Á·ÇÏ´Â Àç°í ¼öºÒÅ×ÀÌºíÀ» »ý¼ºÇÏ½Ã¿À.
-  1) Å×ÀÌºí¸í : REMAIN
-  2) ÄÃ·³¸í¼¼
+ ***ë‹¤ìŒ ì¡°ê±´ì„ ë§Œì¡±í•˜ëŠ” ìž¬ê³  ìˆ˜ë¶ˆí…Œì´ë¸”ì„ ìƒì„±í•˜ì‹œì˜¤.
+  1) í…Œì´ë¸”ëª… : REMAIN
+  2) ì»¬ëŸ¼ëª…ì„¸
    -------------------------------------------------------------------------------------
-    ÄÃ·³¸í               µ¥ÀÌÅÍÅ¸ÀÔ           N.N           PK&FK            DEFAULT VALUE
+    ì»¬ëŸ¼ëª…               ë°ì´í„°íƒ€ìž…           N.N           PK&FK            DEFAULT VALUE
    ------------------------------------------------------------------------------------- 
    REMAIN_YEAR          CHAR(4)                           PK
    PROD_ID             VARCHAR2(10)                      PK&FK
-   REMAIN_J_00          NUMBER(5)                                             0--±âÃÊÀç°í
-   REMAIN_J_I           NUMBER(5)                                             0--¸ÅÀÔÁý°è
-   REMAIN_J_0           NUMBER(5)                                             0--Ãâ°í¼ö·®Áý°è          
-   REMAIN_J_99          NUMBER(5)                                             0--ÇöÀç°í  
+   REMAIN_J_00          NUMBER(5)                                             0--ê¸°ì´ˆìž¬ê³ 
+   REMAIN_J_I           NUMBER(5)                                             0--ë§¤ìž…ì§‘ê³„
+   REMAIN_J_0           NUMBER(5)                                             0--ì¶œê³ ìˆ˜ëŸ‰ì§‘ê³„          
+   REMAIN_J_99          NUMBER(5)                                             0--í˜„ìž¬ê³   
    REMAIN_DATE        DATE
   ---------------------------------------------------------------------------------------
   
-  3. DML ¸í·É°ú ¼­ºêÄõ¸®
-   1)INSERT ¹®
-   - »ðÀÔÇÒ ÀÚ·á¸¦ ¼­ºêÄõ¸®·Î Á¤ÀÇ
- (»ç¿ëÇü½Ä)
-   INSERT INTO Å×ÀÌºí¸í[(ÄÃ·³list)]
-    ¼­ºêÄõ¸®;
-  . INSERT ¹®¿¡¼­ ¼­ºêÄõ¸®¸¦ »ç¿ëÇÒ °æ¿ì VALUES ÀýÀ» »ý·«ÇÏ°í '( )'¸¦ »ý·«ÇÔ
-  . '¼­ºêÄõ¸®' ³»ÀÇ SELECT Àý¿¡ ±â¼úÇÏ´Â ÄÃ·³ÀÇ °³¼ö, ¼ø¼­, Å¸ÀÔ°ú 'Å×ÀÌºí¸í[(ÄÃ·³list)]'ÀÇ
-    ÄÃ·³listÀÇ ÄÃ·³ÀÇ °³¼ö, ¼ø¼­, Å¸ÀÔÀº ÀÏÄ¡ÇØ¾ß ÇÔ
+  3. DML ëª…ë ¹ê³¼ ì„œë¸Œì¿¼ë¦¬
+   1)INSERT ë¬¸
+   - ì‚½ìž…í•  ìžë£Œë¥¼ ì„œë¸Œì¿¼ë¦¬ë¡œ ì •ì˜
+ (ì‚¬ìš©í˜•ì‹)
+   INSERT INTO í…Œì´ë¸”ëª…[(ì»¬ëŸ¼list)]
+    ì„œë¸Œì¿¼ë¦¬;
+  . INSERT ë¬¸ì—ì„œ ì„œë¸Œì¿¼ë¦¬ë¥¼ ì‚¬ìš©í•  ê²½ìš° VALUES ì ˆì„ ìƒëžµí•˜ê³  '( )'ë¥¼ ìƒëžµí•¨
+  . 'ì„œë¸Œì¿¼ë¦¬' ë‚´ì˜ SELECT ì ˆì— ê¸°ìˆ í•˜ëŠ” ì»¬ëŸ¼ì˜ ê°œìˆ˜, ìˆœì„œ, íƒ€ìž…ê³¼ 'í…Œì´ë¸”ëª…[(ì»¬ëŸ¼list)]'ì˜
+    ì»¬ëŸ¼listì˜ ì»¬ëŸ¼ì˜ ê°œìˆ˜, ìˆœì„œ, íƒ€ìž…ì€ ì¼ì¹˜í•´ì•¼ í•¨
     
-»ç¿ë¿¹) »ý¼ºÇÑ Àç°í¼öºÒ Å×ÀÌºí¿¡ ´ÙÀ½ ÀÚ·á¸¦ ÀÔ·ÂÇÏ½Ã¿À
-    [ÀÚ·á]
-    . ³âµµ : '2020'
-    . »óÇ°ÄÚµå : PRODÅ×ÀÌºíÀÇ »óÇ°ÄÚµå
-    . ±âÃÊÀç°í : »óÇ°Å×ÀÌºíÀÇ PROD_PROPERSTOCKÀÇ °ª
-    . ¸ÅÀÔ/¸ÅÃâ ¼ö·® : ¾øÀ½
-    . ±â¸»Àç°í : »óÇ°Å×ÀÌºíÀÇ PROD_PROPERSTOCKÀÇ °ª
-    . ³¯Â¥ : 2020³â 1¿ù 1ÀÏ
+ì‚¬ìš©ì˜ˆ) ìƒì„±í•œ ìž¬ê³ ìˆ˜ë¶ˆ í…Œì´ë¸”ì— ë‹¤ìŒ ìžë£Œë¥¼ ìž…ë ¥í•˜ì‹œì˜¤
+    [ìžë£Œ]
+    . ë…„ë„ : '2020'
+    . ìƒí’ˆì½”ë“œ : PRODí…Œì´ë¸”ì˜ ìƒí’ˆì½”ë“œ
+    . ê¸°ì´ˆìž¬ê³  : ìƒí’ˆí…Œì´ë¸”ì˜ PROD_PROPERSTOCKì˜ ê°’
+    . ë§¤ìž…/ë§¤ì¶œ ìˆ˜ëŸ‰ : ì—†ìŒ
+    . ê¸°ë§ìž¬ê³  : ìƒí’ˆí…Œì´ë¸”ì˜ PROD_PROPERSTOCKì˜ ê°’
+    . ë‚ ì§œ : 2020ë…„ 1ì›” 1ì¼
   INSERT INTO REMAIN(REMAIN_YEAR,PROD_ID,REMAIN_J_00,REMAIN_J_99,REMAIN_DATE)
     SELECT '2020',PROD_ID,PROD_PROPERSTOCK,PROD_PROPERSTOCK,TO_DATE('20200101') 
      FROM PROD;
@@ -163,28 +163,28 @@
     COMMIT;
     
 2) UPDATE 
- - SET Àý¿¡ ÇÊ¿äÇÑ ÀÚ·á¸¦ ¼­ºêÄõ¸®¸¦ ÀÌ¿ëÇÏ´Â °æ¿ì
- (»ç¿ëÇü½Ä)
- UPDATE Å×ÀÌºí¸í [º°Äª]
-    SET (ÄÃ·³¸í[,ÄÃ·³¸í,...])=(¼­ºêÄõ¸®)
-  [WHERE Á¶°Ç];
-  . (ÄÃ·³¸í[,ÄÃ·³¸í,...]) : º¯°æ½ÃÅ³ ÀÚ·á°¡ ÀúÀåµÉ ÄÃ·³¸íÀ¸·Î º¹¼ö°³°¡ ±â¼úµÉ ¼ö ÀÖ´Ù.
-  . º¹¼ö°³°¡ ±â¼úµÉ ÄÃ·³¸íÀÇ °³¼ö,¼ø¼­,Å¸ÀÔÀº ¼­ºêÄõ¸®ÀÇ SELECT Àý¿¡ ±â¼úµÇ´Â ÄÃ·³¸íÀÇ °³¼ö,¼ø¼­,Å¸ÀÔ°ú ÀÏÄ¡ÇØ¾ß ÇÔ.
+ - SET ì ˆì— í•„ìš”í•œ ìžë£Œë¥¼ ì„œë¸Œì¿¼ë¦¬ë¥¼ ì´ìš©í•˜ëŠ” ê²½ìš°
+ (ì‚¬ìš©í˜•ì‹)
+ UPDATE í…Œì´ë¸”ëª… [ë³„ì¹­]
+    SET (ì»¬ëŸ¼ëª…[,ì»¬ëŸ¼ëª…,...])=(ì„œë¸Œì¿¼ë¦¬)
+  [WHERE ì¡°ê±´];
+  . (ì»¬ëŸ¼ëª…[,ì»¬ëŸ¼ëª…,...]) : ë³€ê²½ì‹œí‚¬ ìžë£Œê°€ ì €ìž¥ë  ì»¬ëŸ¼ëª…ìœ¼ë¡œ ë³µìˆ˜ê°œê°€ ê¸°ìˆ ë  ìˆ˜ ìžˆë‹¤.
+  . ë³µìˆ˜ê°œê°€ ê¸°ìˆ ë  ì»¬ëŸ¼ëª…ì˜ ê°œìˆ˜,ìˆœì„œ,íƒ€ìž…ì€ ì„œë¸Œì¿¼ë¦¬ì˜ SELECT ì ˆì— ê¸°ìˆ ë˜ëŠ” ì»¬ëŸ¼ëª…ì˜ ê°œìˆ˜,ìˆœì„œ,íƒ€ìž…ê³¼ ì¼ì¹˜í•´ì•¼ í•¨.
 
-»ç¿ë¿¹) 2020³â 1¿ù Á¦Ç°º° ¸ÅÀÔ¼ö·®ÇÕ°è¸¦ ±¸ÇÏ¿© Àç°í¼öºÒÅ×ÀÌºíÀ» °»½ÅÇÏ½Ã¿À.
+ì‚¬ìš©ì˜ˆ) 2020ë…„ 1ì›” ì œí’ˆë³„ ë§¤ìž…ìˆ˜ëŸ‰í•©ê³„ë¥¼ êµ¬í•˜ì—¬ ìž¬ê³ ìˆ˜ë¶ˆí…Œì´ë¸”ì„ ê°±ì‹ í•˜ì‹œì˜¤.
 
-(¼­ºêÄõ¸® : 2020³â 1¿ù Á¦Ç°º° ¸ÅÀÔ¼ö·®ÇÕ°è)
+(ì„œë¸Œì¿¼ë¦¬ : 2020ë…„ 1ì›” ì œí’ˆë³„ ë§¤ìž…ìˆ˜ëŸ‰í•©ê³„)
   
-  SELECT BUY_PROD,--ÇÊ¿ä¾øÀ½
+  SELECT BUY_PROD,--í•„ìš”ì—†ìŒ
          SUM(BUY_QTY)
     FROM BUYPROD
     WHERE BUY_DATE BETWEEN TO_DATE('20200101') AND TO_DATE('20200131')
     GROUP BY BUY_PROD;
     
-(¸ÞÀÎÄõ¸®)
+(ë©”ì¸ì¿¼ë¦¬)
 UPDATE REMAIN A
   SET (A.REMAIN_I, A.REMAIN_J_99, A.REMAIN_DATE) =        
-      (SELECT A.REMAIN_I+B.SAMT, A.REMAIN_J_99+B.SAMT, TO_DATE('20200331')--»õ·Î¿î ¸ÅÀÔ¼ö·®À» ±âÁ¸¸ÅÀÔ¼ö·®¿¡ ´õÇØ¾ßÇØ¼­ +¸ÅÀÔ¼ö·® ÇÑ¹ø ´õ ±â¼ú
+      (SELECT A.REMAIN_I+B.SAMT, A.REMAIN_J_99+B.SAMT, TO_DATE('20200331')--ìƒˆë¡œìš´ ë§¤ìž…ìˆ˜ëŸ‰ì„ ê¸°ì¡´ë§¤ìž…ìˆ˜ëŸ‰ì— ë”í•´ì•¼í•´ì„œ +ë§¤ìž…ìˆ˜ëŸ‰ í•œë²ˆ ë” ê¸°ìˆ 
         FROM (SELECT BUY_PROD,SUM(BUY_QTY) AS SAMT
                 FROM BUYPROD
                WHERE BUY_DATE BETWEEN TO_DATE('20200101') AND TO_DATE('20200331')
@@ -197,29 +197,29 @@ UPDATE REMAIN A
 ROLLBACK;
 COMMIT;
 
-»ç¿ë¿¹) 2020³â 4¿ù Á¦Ç°º° ¸ÅÀÔ¼ö·®ÇÕ°è¿Í ¸ÅÃâ¼ö·®ÇÕ°Ô¸¦ ±¸ÇÏ¿© Àç°í¼öºÒÅ×ÀÌºíÀ» °»½ÅÇÏ½Ã¿À.
+ì‚¬ìš©ì˜ˆ) 2020ë…„ 4ì›” ì œí’ˆë³„ ë§¤ìž…ìˆ˜ëŸ‰í•©ê³„ì™€ ë§¤ì¶œìˆ˜ëŸ‰í•©ê²Œë¥¼ êµ¬í•˜ì—¬ ìž¬ê³ ìˆ˜ë¶ˆí…Œì´ë¸”ì„ ê°±ì‹ í•˜ì‹œì˜¤.
 
- (¼­ºêÄõ¸® : 2020³â 4¿ù Á¦Ç°º° ¸ÅÀÔ¼ö·®ÇÕ°è¿Í ¸ÅÃâ¼ö·®ÇÕ°è)
-   SELECT C.PROD_ID AS Á¦Ç°ÄÚµå,
-          NVL(SUM(B.BUY_QTY),0) AS ¸ÅÀÔ¼ö·®ÇÕ°è,
-          NVL(SUM(A.CART_QTY),0) AS ¸ÅÃâ¼ö·®ÇÕ°è
+ (ì„œë¸Œì¿¼ë¦¬ : 2020ë…„ 4ì›” ì œí’ˆë³„ ë§¤ìž…ìˆ˜ëŸ‰í•©ê³„ì™€ ë§¤ì¶œìˆ˜ëŸ‰í•©ê³„)
+   SELECT C.PROD_ID AS ì œí’ˆì½”ë“œ,
+          NVL(SUM(B.BUY_QTY),0) AS ë§¤ìž…ìˆ˜ëŸ‰í•©ê³„,
+          NVL(SUM(A.CART_QTY),0) AS ë§¤ì¶œìˆ˜ëŸ‰í•©ê³„
      FROM CART A
      RIGHT OUTER JOIN PROD C ON(A.CART_PROD=C.PROD_ID AND A.CART_NO LIKE '202004%')
      LEFT OUTER JOIN BUYPROD B ON(C.PROD_ID=B.BUY_PROD
      AND B.BUY_DATE BETWEEN TO_DATE('20200401') AND TO_DATE('20200430'))          
     GROUP BY C.PROD_ID;      
     
-  -- 4¿ù¿¡ ¹ß»ýµÈ ¸ÅÀÔ»óÇ°
+  -- 4ì›”ì— ë°œìƒëœ ë§¤ìž…ìƒí’ˆ
   SELECT DISTINCT(BUY_PROD)
     FROM BUYPROD
    WHERE BUY_DATE BETWEEN TO_DATE('20200401') AND TO_DATE('20200430');
    
-  --4¿ù¿¡ ¹ß»ýµÈ ¸ÅÃâ»óÇ°
+  --4ì›”ì— ë°œìƒëœ ë§¤ì¶œìƒí’ˆ
   SELECT DISTINCT(CART_PROD)
     FROM CART
    WHERE CART_NO LIKE '202004%';
    
-(¸ÞÀÎÄõ¸® : Àç°í¼öºÒÅ×ÀÌºíÀ» °»½Å)
+(ë©”ì¸ì¿¼ë¦¬ : ìž¬ê³ ìˆ˜ë¶ˆí…Œì´ë¸”ì„ ê°±ì‹ )
   UPDATE REMAIN R
      SET (R.REMAIN_I, R.REMAIN_O, R.REMAIN_J_99, R.REMAIN_DATE)=
          (SELECT R.REMAIN_I+D.SIMT,R.REMAIN_O+D.SOMT,R.REMAIN_J_99+D.SIMT-D.SOMT,
@@ -233,4 +233,3 @@ COMMIT;
                     AND B.BUY_DATE BETWEEN TO_DATE('20200401') AND TO_DATE('20200430'))          
                     GROUP BY C.PROD_ID)D   
             WHERE D.CPID=R.PROD_ID);
-
